@@ -1,0 +1,1026 @@
+---
+/**
+ * PROPUESTA — Rediseño minimalista de Pródigo Labs.
+ * Página autocontenida: no usa BaseLayout ni global.css para no
+ * interferir con la página actual. Todo el CSS vive aquí, sobre
+ * tokens que funcionan en tema claro y oscuro (sin colores fijos
+ * sobre fondos variables — el bug de la versión anterior).
+ */
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource-variable/dm-sans';
+import '@fontsource/dm-mono/400.css';
+import '@fontsource/dm-mono/500.css';
+
+const title = 'Pródigo Labs — Sistemas para operaciones reales (propuesta)';
+const description =
+  'Convertimos procesos desordenados, planillas y operación manual en sistemas digitales claros, simples y escalables.';
+const currentYear = new Date().getFullYear();
+
+const metodo = [
+  {
+    n: '01',
+    t: 'Diagnóstico',
+    d: 'Entendemos la operación real: quién hace qué, dónde se pierde tiempo y qué proceso vale la pena sistematizar primero.'
+  },
+  {
+    n: '02',
+    t: 'Diseño del sistema',
+    d: 'Definimos el flujo correcto antes de dibujar pantallas. El modelo de negocio manda; la interfaz obedece.'
+  },
+  {
+    n: '03',
+    t: 'Construcción',
+    d: 'Desarrollamos por etapas verificables, como un checklist de cabina: nada avanza sin estar probado.'
+  },
+  {
+    n: '04',
+    t: 'Lanzamiento e iteración',
+    d: 'Salimos a producción con lo esencial y evolucionamos el sistema junto a la operación, mes a mes.'
+  }
+];
+
+const proyectos = [
+  {
+    nombre: 'Turikunza',
+    tipo: 'De planillas → SaaS',
+    estado: 'En producción',
+    anio: '2023',
+    resultado: '68% menos carga administrativa · 0 sobreventas desde el lanzamiento'
+  },
+  {
+    nombre: 'Flota Municipal',
+    tipo: 'De operación manual → Control',
+    estado: 'En producción',
+    anio: '2024',
+    resultado: '99.8% de uptime · trazabilidad completa de la flota'
+  },
+  {
+    nombre: 'Focalo',
+    tipo: 'De caos → Sistema',
+    estado: 'En producción',
+    anio: '2025',
+    resultado: 'Operación centralizada en una sola herramienta'
+  },
+  {
+    nombre: 'Ritualia',
+    tipo: 'De idea → MVP',
+    estado: 'MVP en curso',
+    anio: '2026',
+    resultado: 'Problema validado antes de escribir la primera línea de código'
+  }
+];
+
+const problemas = [
+  {
+    t: 'Operaciones fragmentadas',
+    d: 'Información dispersa en correos, WhatsApp y planillas que nadie controla.'
+  },
+  {
+    t: 'Sistemas frágiles',
+    d: 'Herramientas que crecieron sin estructura y hoy son caras de mantener.'
+  },
+  {
+    t: 'Procesos manuales',
+    d: 'Tareas que dependen de una sola persona para no colapsar.'
+  },
+  {
+    t: 'Productos sin foco',
+    d: 'Ideas construidas sin validar el problema real primero.'
+  }
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- Borrador interno: no indexar hasta reemplazar a la página actual -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+
+    <header class="topbar">
+      <a href="/propuesta" class="brand" aria-label="Pródigo Labs, inicio">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 9 9" focusable="false">
+            <rect x="0" y="0" width="9" height="2.5"></rect>
+            <rect x="0" y="3.5" width="5.5" height="2.5"></rect>
+            <rect x="0" y="7" width="9" height="2"></rect>
+          </svg>
+        </span>
+        Pródigo Labs
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#metodo">Método</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto" class="nav-cta">Conversemos</a>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <!-- ============ HERO ============ -->
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="kicker">
+          <span class="kicker-dot" aria-hidden="true"></span>
+          Product Systems Lab · Santiago, Chile
+        </p>
+        <h1 id="hero-title">
+          Sistemas que <em>ordenan</em><br />operaciones reales.
+        </h1>
+        <p class="lede">
+          Convertimos procesos desordenados, planillas y operación manual en
+          sistemas digitales claros, simples y escalables.
+        </p>
+        <p class="cred">
+          Dirigido por un <strong>Comandante de A320</strong> — llevamos la
+          disciplina de la aviación a los productos digitales.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#contacto">Conversemos <span aria-hidden="true">→</span></a>
+          <a class="btn btn-line" href="#metodo">Ver el método</a>
+        </div>
+        <p class="hero-chips" aria-label="Tipos de transformación">
+          <span>De planillas → SaaS</span>
+          <span aria-hidden="true">·</span>
+          <span>De idea → MVP</span>
+          <span aria-hidden="true">·</span>
+          <span>De caos → Sistema</span>
+        </p>
+        <div class="halftone" aria-hidden="true"></div>
+      </section>
+
+      <!-- ============ PROBLEMA ============ -->
+      <section class="sec" aria-labelledby="problema-title">
+        <p class="label">El problema</p>
+        <h2 id="problema-title">Las operaciones crecen. <em>Los sistemas no.</em></h2>
+        <p class="sec-intro">
+          La mayoría de los negocios digitalizan herramientas, no sus operaciones.
+          El resultado: más aplicaciones, más fricción, menos claridad.
+        </p>
+        <ol class="index-list">
+          {problemas.map((p, i) => (
+            <li>
+              <span class="idx" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{p.t}</h3>
+                <p>{p.d}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <!-- ============ MÉTODO ============ -->
+      <section class="sec" id="metodo" aria-labelledby="metodo-title">
+        <p class="label">El método</p>
+        <h2 id="metodo-title">Checklist, <em>no improvisación.</em></h2>
+        <p class="sec-intro">
+          En aviación nada crítico se deja a la memoria ni al talento del día.
+          Operamos los proyectos igual: un proceso claro, en cuatro etapas verificables.
+        </p>
+        <ol class="steps">
+          {metodo.map((m) => (
+            <li>
+              <span class="idx" aria-hidden="true">{m.n}</span>
+              <h3>{m.t}</h3>
+              <p>{m.d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <!-- ============ PROYECTOS ============ -->
+      <section class="sec" id="proyectos" aria-labelledby="proyectos-title">
+        <p class="label">Proyectos</p>
+        <h2 id="proyectos-title">Trabajo real. <em>Resultados concretos.</em></h2>
+        <ul class="cases">
+          {proyectos.map((p) => (
+            <li>
+              <div class="case-head">
+                <h3>{p.nombre}</h3>
+                <span class="case-year">{p.anio}</span>
+              </div>
+              <p class="case-type">{p.tipo}</p>
+              <p class="case-result">{p.resultado}</p>
+              <span class="case-status">{p.estado}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- ============ SERVICIOS ============ -->
+      <section class="sec" id="servicios" aria-labelledby="servicios-title">
+        <p class="label">Servicios</p>
+        <h2 id="servicios-title">Dos formas de <em>trabajar juntos.</em></h2>
+        <div class="offers">
+          <article>
+            <p class="offer-tag">Proyecto</p>
+            <h3>De cero a sistema</h3>
+            <p>
+              Entendemos tu operación, diseñamos el sistema correcto y lo
+              construimos. Diagnóstico, diseño, desarrollo y lanzamiento —
+              todo en un proceso.
+            </p>
+            <a href="#contacto">Conversemos <span aria-hidden="true">→</span></a>
+          </article>
+          <article>
+            <p class="offer-tag">Retainer</p>
+            <h3>Evolución continua</h3>
+            <p>
+              El negocio evoluciona y el sistema tiene que acompañarlo.
+              Iteración mensual, sin contratos largos. Solo para sistemas que
+              construimos juntos.
+            </p>
+            <a href="#contacto">Conversemos <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ NOSOTROS ============ -->
+      <section class="sec" id="nosotros" aria-labelledby="nosotros-title">
+        <p class="label">Quiénes somos</p>
+        <h2 id="nosotros-title">Un estudio pequeño, <em>de alto criterio.</em></h2>
+        <blockquote>
+          "No partimos preguntando ¿cómo se ve la pantalla? sino ¿qué problema
+          estamos resolviendo, para quién y dentro de qué modelo de negocio?"
+        </blockquote>
+        <div class="founder">
+          <span class="avatar" aria-hidden="true">S</span>
+          <div>
+            <p class="f-name">Samuel Moder</p>
+            <p class="f-role">Comandante A320 · Product Builder · Fundador</p>
+          </div>
+        </div>
+        <p class="scarcity">
+          Trabajamos con <strong>2–3 clientes activos como máximo</strong> para
+          garantizar atención completa. No buscamos volumen — buscamos profundidad.
+        </p>
+      </section>
+
+      <!-- ============ CONTACTO ============ -->
+      <section class="contact" id="contacto" aria-labelledby="contacto-title">
+        <div class="contact-in">
+          <p class="label label-invert">Contacto</p>
+          <h2 id="contacto-title">Hablemos de <em>tu operación.</em></h2>
+          <p class="contact-sub">
+            Cuéntanos qué proceso quieres ordenar. Respondemos dentro de un día hábil.
+          </p>
+          <!--
+            El formulario arma un correo prellenado (sin backend). Para captura
+            directa de leads, reemplazar handleSubmit por un action de
+            Formspree/Basin y eliminar el script.
+          -->
+          <form class="contact-form" novalidate>
+            <div class="field">
+              <label for="f-nombre">Nombre</label>
+              <input id="f-nombre" name="nombre" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="f-email">Correo</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field field-wide">
+              <label for="f-mensaje">¿Qué operación quieres ordenar?</label>
+              <textarea id="f-mensaje" name="mensaje" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-invert">Enviar mensaje <span aria-hidden="true">→</span></button>
+          </form>
+          <p class="contact-alt">
+            ¿Prefieres escribir directo?
+            <a href="mailto:hola@prodigolabs.com">hola@prodigolabs.com</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p class="f-brand">Pródigo Labs</p>
+      <nav aria-label="Navegación de pie de página">
+        <a href="#metodo">Método</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <p class="f-copy">© Pródigo Labs {currentYear} · Santiago, Chile</p>
+    </footer>
+
+    <script>
+      // Formulario → correo prellenado (sin backend).
+      const form = document.querySelector<HTMLFormElement>('.contact-form');
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        const data = new FormData(form);
+        const subject = encodeURIComponent(`Consulta de ${data.get('nombre')}`);
+        const body = encodeURIComponent(
+          `Nombre: ${data.get('nombre')}\nCorreo: ${data.get('email')}\n\n${data.get('mensaje')}`
+        );
+        window.location.href = `mailto:hola@prodigolabs.com?subject=${subject}&body=${body}`;
+      });
+    </script>
+
+    <style is:global>
+      /* ============ Tokens ============ */
+      :root {
+        color-scheme: light;
+
+        --bg: #f4f1ea;
+        --surface: #faf9f4;
+        --line: #ddd9cd;
+        --ink: #1a1a17;
+        --muted: #5f5c55;
+        --olive: #3d5240;
+        --olive-soft: #6f9473;
+        --dot: rgba(61, 82, 64, 0.35);
+        /* Banda invertida: se voltea completa por tema → contraste garantizado */
+        --invert-bg: #1a1a17;
+        --invert-ink: #f4f1ea;
+        --invert-muted: rgba(244, 241, 234, 0.72);
+        --invert-line: rgba(244, 241, 234, 0.22);
+
+        --serif: 'Instrument Serif', Georgia, serif;
+        --sans: 'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
+        --mono: 'DM Mono', ui-monospace, Menlo, monospace;
+
+        --gutter: clamp(1.25rem, 6vw, 8rem);
+        --space: clamp(5rem, 10vw, 9rem);
+        --measure: 62ch;
+      }
+
+      /* ============ Base ============ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--sans);
+        font-size: clamp(1rem, 1.05vw, 1.06rem);
+        line-height: 1.7;
+        background: var(--bg);
+        color: var(--ink);
+        transition: background 0.3s, color 0.3s;
+      }
+
+      section[id] {
+        scroll-margin-top: 5rem;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible {
+        outline: 2px solid var(--olive-soft);
+        outline-offset: 3px;
+      }
+
+      .skip {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        background: var(--ink);
+        color: var(--bg);
+        padding: 0.6rem 1rem;
+        z-index: 200;
+      }
+
+      .skip:focus {
+        left: 1rem;
+        top: 1rem;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--serif);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+      }
+
+      em {
+        font-style: italic;
+        color: var(--olive);
+      }
+
+      .label {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1.25rem;
+      }
+
+      /* ============ Topbar ============ */
+      .topbar {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.1rem var(--gutter);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: var(--serif);
+        font-size: 1.05rem;
+        color: var(--ink);
+        text-decoration: none;
+        margin-right: auto;
+      }
+
+      .brand-mark {
+        display: inline-flex;
+        width: 22px;
+        height: 22px;
+        padding: 4px;
+        background: var(--olive);
+        border-radius: 5px;
+      }
+
+      .brand-mark svg {
+        width: 100%;
+        fill: var(--bg);
+      }
+
+      .topbar nav {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.9rem, 2.5vw, 1.75rem);
+      }
+
+      .topbar nav a {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .topbar nav a:hover {
+        color: var(--ink);
+      }
+
+      .topbar nav a.nav-cta {
+        color: var(--olive);
+        font-weight: 600;
+      }
+
+      /* ============ Hero ============ */
+      .hero {
+        position: relative;
+        padding: var(--space) var(--gutter) calc(var(--space) * 0.8);
+        border-bottom: 1px solid var(--line);
+        overflow: hidden;
+      }
+
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 2rem;
+      }
+
+      .kicker-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--olive-soft);
+      }
+
+      .hero h1 {
+        font-size: clamp(2.9rem, 7vw, 5.6rem);
+        max-width: 14ch;
+        margin-bottom: 1.75rem;
+      }
+
+      .lede {
+        max-width: var(--measure);
+        font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+        font-weight: 300;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+
+      .cred {
+        max-width: var(--measure);
+        color: var(--muted);
+        margin-bottom: 2.5rem;
+      }
+
+      .cred strong {
+        color: var(--ink);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-chips {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      /* Eco del grabado: bloque de halftone puntillado, sutil */
+      .halftone {
+        position: absolute;
+        right: calc(var(--gutter) * 0.5);
+        bottom: -40px;
+        width: min(420px, 45vw);
+        height: 260px;
+        background-image: radial-gradient(var(--dot) 1.1px, transparent 1.1px);
+        background-size: 13px 13px;
+        -webkit-mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 68%);
+        mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 68%);
+        pointer-events: none;
+      }
+
+      /* ============ Botones ============ */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.6rem;
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: opacity 0.2s, border-color 0.2s;
+      }
+
+      .btn-solid {
+        background: var(--ink);
+        color: var(--bg);
+      }
+
+      .btn-solid:hover {
+        opacity: 0.85;
+      }
+
+      .btn-line {
+        border-color: var(--line);
+        color: var(--ink);
+      }
+
+      .btn-line:hover {
+        border-color: var(--muted);
+      }
+
+      .btn-invert {
+        background: var(--invert-ink);
+        color: var(--invert-bg);
+        font-family: var(--sans);
+        font-size: 0.9rem;
+      }
+
+      .btn-invert:hover {
+        opacity: 0.85;
+      }
+
+      /* ============ Secciones ============ */
+      .sec {
+        padding: var(--space) var(--gutter);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .sec h2 {
+        font-size: clamp(2.1rem, 4vw, 3.4rem);
+        max-width: 22ch;
+        margin-bottom: 1.25rem;
+      }
+
+      .sec-intro {
+        max-width: var(--measure);
+        color: var(--muted);
+        font-weight: 300;
+        margin-bottom: 3.5rem;
+      }
+
+      /* Lista índice (problema) */
+      .index-list {
+        list-style: none;
+        max-width: 860px;
+      }
+
+      .index-list li {
+        display: flex;
+        gap: 1.75rem;
+        padding: 1.6rem 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .index-list li:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .idx {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--olive-soft);
+        padding-top: 0.45rem;
+        min-width: 2.2rem;
+      }
+
+      .index-list h3 {
+        font-size: 1.35rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .index-list p {
+        color: var(--muted);
+        font-weight: 300;
+        max-width: 52ch;
+      }
+
+      /* Método */
+      .steps {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.5rem;
+        counter-reset: paso;
+      }
+
+      .steps li {
+        border-top: 2px solid var(--olive);
+        padding-top: 1.25rem;
+      }
+
+      .steps .idx {
+        display: block;
+        padding: 0 0 1.5rem;
+      }
+
+      .steps h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .steps p {
+        font-size: 0.92rem;
+        font-weight: 300;
+        color: var(--muted);
+      }
+
+      /* Proyectos */
+      .cases {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+
+      .cases li {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .case-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .cases h3 {
+        font-size: 1.7rem;
+      }
+
+      .case-year {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      .case-type {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        color: var(--olive);
+      }
+
+      .case-result {
+        color: var(--muted);
+        font-weight: 300;
+        max-width: 46ch;
+      }
+
+      .case-status {
+        margin-top: auto;
+        padding-top: 0.75rem;
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--olive-soft);
+      }
+
+      /* Servicios */
+      .offers {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        max-width: 980px;
+      }
+
+      .offers article {
+        border-top: 1px solid var(--line);
+        padding-top: 1.5rem;
+      }
+
+      .offer-tag {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--olive-soft);
+        margin-bottom: 0.9rem;
+      }
+
+      .offers h3 {
+        font-size: 1.7rem;
+        margin-bottom: 0.7rem;
+      }
+
+      .offers p {
+        color: var(--muted);
+        font-weight: 300;
+        margin-bottom: 1.25rem;
+      }
+
+      .offers a {
+        color: var(--olive);
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+      }
+
+      .offers a:hover {
+        text-decoration: underline;
+      }
+
+      /* Nosotros */
+      blockquote {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+        line-height: 1.4;
+        max-width: 34ch;
+        color: var(--ink);
+        border-left: 2px solid var(--olive);
+        padding-left: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .founder {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .avatar {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--olive);
+        color: #f4f1ea;
+        font-family: var(--serif);
+        font-size: 1.2rem;
+      }
+
+      .f-name {
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .f-role {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .scarcity {
+        max-width: var(--measure);
+        color: var(--muted);
+        font-weight: 300;
+      }
+
+      .scarcity strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* ============ Contacto (banda invertida) ============ */
+      .contact {
+        background: var(--invert-bg);
+        color: var(--invert-ink);
+        padding: var(--space) var(--gutter);
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .contact-in {
+        max-width: 760px;
+      }
+
+      .label-invert {
+        color: var(--invert-muted);
+      }
+
+      .contact h2 {
+        font-size: clamp(2.1rem, 4vw, 3.4rem);
+        margin-bottom: 1rem;
+      }
+
+      .contact em {
+        color: var(--olive-soft);
+      }
+
+      .contact-sub {
+        color: var(--invert-muted);
+        font-weight: 300;
+        margin-bottom: 2.75rem;
+        max-width: 52ch;
+      }
+
+      .contact-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .field-wide {
+        grid-column: 1 / -1;
+      }
+
+      .field label {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--invert-muted);
+      }
+
+      .field input,
+      .field textarea {
+        font-family: var(--sans);
+        font-size: 0.95rem;
+        color: var(--invert-ink);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--invert-line);
+        padding: 0.55rem 0;
+        resize: vertical;
+        transition: border-color 0.2s;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        border-bottom-color: var(--olive-soft);
+        outline: none;
+      }
+
+      .contact-form .btn-invert {
+        grid-column: 1 / -1;
+        justify-self: start;
+        border: none;
+      }
+
+      .contact-alt {
+        font-size: 0.9rem;
+        color: var(--invert-muted);
+      }
+
+      .contact-alt a {
+        color: var(--invert-ink);
+        text-underline-offset: 3px;
+      }
+
+      /* ============ Footer ============ */
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        padding: 2rem var(--gutter);
+        border-top: 1px solid var(--line);
+      }
+
+      .f-brand {
+        font-family: var(--serif);
+      }
+
+      footer nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      footer nav a {
+        font-size: 0.8rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      footer nav a:hover {
+        color: var(--ink);
+      }
+
+      .f-copy {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      /* ============ Responsive ============ */
+      @media (max-width: 900px) {
+        .steps {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .cases {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .topbar {
+          flex-wrap: wrap;
+          row-gap: 0.75rem;
+        }
+
+        .topbar nav {
+          order: 3;
+          width: 100%;
+          justify-content: flex-start;
+          overflow-x: auto;
+        }
+
+        .steps,
+        .offers,
+        .contact-form {
+          grid-template-columns: 1fr;
+        }
+
+        .index-list li {
+          gap: 1rem;
+        }
+
+        .halftone {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </body>
+</html>

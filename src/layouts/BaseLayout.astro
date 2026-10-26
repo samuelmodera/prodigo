@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+
+const {
+  title = 'Pródigo Labs - Sistemas para operaciones reales',
+  description = 'Diseñamos y construimos herramientas digitales para negocios que necesitan operar con más claridad, menos fricción y mejores resultados.',
+  image = '/og-image.png'
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://prodigolabs.com');
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+const jsonLd = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Pródigo Labs',
+    url: siteUrl.toString(),
+    email: 'hola@prodigolabs.com',
+    logo: new URL('/favicon.svg', siteUrl).toString(),
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Santiago',
+      addressCountry: 'CL'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Pródigo Labs',
+    url: siteUrl.toString(),
+    inLanguage: 'es-CL',
+    description
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'Pródigo Labs',
+    url: siteUrl.toString(),
+    email: 'hola@prodigolabs.com',
+    areaServed: 'Chile',
+    serviceType: [
+      'Diseño de productos digitales',
+      'Desarrollo de sistemas operacionales',
+      'Construcción de SaaS B2B'
+    ]
+  }
+]);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Pródigo Labs" />
+    <meta name="robots" content="index, follow" />
+    <meta name="application-name" content="Pródigo Labs" />
+    <meta name="theme-color" content="#F4F1EA" />
+    <link rel="canonical" href={canonical} />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="Pródigo Labs" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Pródigo Labs - Sistemas para operaciones reales" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content="Pródigo Labs - Sistemas para operaciones reales" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+<script type="application/ld+json" set:html={jsonLd} is:inline></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "Pródigo Labs",
+  "short_name": "Pródigo",
+  "description": "Sistemas para operaciones reales.",
+  "lang": "es-CL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F1EA",
+  "theme_color": "#3D5240",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

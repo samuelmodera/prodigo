@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '../assets/hero-renaissance.png';
+---
+<div class="page-shell">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <div class="h-tag fu fu1"><span class="h-dot" aria-hidden="true"></span>Product Systems Lab · Santiago, Chile</div>
+      <h1 id="hero-title" aria-label="Sistemas que ordenan operaciones reales.">
+        <span class="hero-line hero-line-1" aria-hidden="true">
+          Sistemas que
+          <span class="hero-word-slot">
+            <em class="hero-word" data-hero-word>ordenan</em>
+            <em class="hero-word-measure">simplifican</em>
+          </span>
+        </span>
+        <span class="hero-line hero-line-2" aria-hidden="true">operaciones reales.</span>
+      </h1>
+      <p class="h-sub">Convertimos procesos desordenados, planillas y operación manual en sistemas digitales claros, simples y escalables.</p>
+      <div class="h-tags fu fu4" aria-label="Tipos de transformacion">
+        <span class="h-pill">De planillas <span class="chip-arrow">→</span> SaaS</span>
+        <span class="h-pill">De idea <span class="chip-arrow">→</span> MVP</span>
+        <span class="h-pill">De caos <span class="chip-arrow">→</span> Sistema</span>
+      </div>
+      <div class="h-btns fu fu5">
+        <a href="#contacto" class="bp">Conversemos <span class="cta-arrow">→</span></a>
+        <a href="#proyectos" class="bg">Ver proyectos <span class="cta-arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <Image
+        src={heroImg}
+        alt=""
+        class="hero-art"
+        widths={[768, 1280, 1920, 2560]}
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1920px"
+        formats={['avif', 'webp']}
+        quality={78}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    </div>
+  </section>
+</div>
+<script>
+  import '../scripts/site-interactions';
+  import '../scripts/hero-background';
+  import '../scripts/hero-typewriter';
+</script>
