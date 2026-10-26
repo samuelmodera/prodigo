@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import ritualiaProject from '../assets/ritualia-project.png';
+import turikunzaProject from '../assets/turikunza-project.png';
+---
+<section class="projects-showcase" id="proyectos" aria-labelledby="proyectos-title">
+  <header class="projects-showcase__header">
+    <div class="ew">Proyectos</div>
+    <h2 id="proyectos-title" class="st">Trabajo real.<br /><em>Resultados concretos.</em></h2>
+    <p>Sistemas diseñados y construidos desde cero para operaciones reales, automatizadas y simples.</p>
+  </header>
+
+  <article class="project-entry">
+    <div class="project-entry__media">
+      <Image
+        src={ritualiaProject}
+        alt="Proyecto Ritualia presentado en un computador portátil"
+        widths={[480, 768, 1280, 1672]}
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px"
+        formats={['avif', 'webp']}
+        quality={75}
+        loading="lazy"
+      />
+    </div>
+    <div class="project-entry__meta">
+      <h3>Ritualia</h3>
+      <div class="project-entry__tags" aria-label="Características del proyecto">
+        <span>De idea <span aria-hidden="true">→</span> MVP</span>
+        <span>Producto digital</span>
+      </div>
+      <time datetime="2026">2026</time>
+    </div>
+  </article>
+
+  <article class="project-entry">
+    <div class="project-entry__media">
+      <Image
+        src={turikunzaProject}
+        alt="Proyecto Turikunza SaaS presentado en un computador portátil"
+        widths={[480, 768, 1280, 1672]}
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px"
+        formats={['avif', 'webp']}
+        quality={75}
+        loading="lazy"
+      />
+    </div>
+    <div class="project-entry__meta">
+      <h3>Turikunza SaaS</h3>
+      <div class="project-entry__tags" aria-label="Características del proyecto">
+        <span>De planillas <span aria-hidden="true">→</span> SaaS</span>
+      </div>
+      <time datetime="2023">2023</time>
+    </div>
+  </article>
+</section>

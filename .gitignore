@@ -1,0 +1,7 @@
+.vercel/
+.astro/
+dist/
+node_modules/
+.DS_Store
+.claude/
+.vscode/
