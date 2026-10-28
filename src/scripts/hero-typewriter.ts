@@ -6,21 +6,28 @@ if (wordElement) {
   const words = ['ordenan', 'simplifican', 'conectan', 'escalan'];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let timeline: gsap.core.Timeline | null = null;
+  let isSetup = false;
+
+  const setWord = (word: string, isTyping: boolean) => {
+    wordElement.textContent = word;
+    wordElement.dataset.typing = String(isTyping);
+  };
 
   const startAnimation = () => {
     timeline?.kill();
-    wordElement.textContent = words[0];
+    setWord(words[0], false);
 
     const nextStartTimes: number[] = [];
-    timeline = gsap.timeline({ paused: true, repeat: -1 });
+    const activeTimeline = gsap.timeline({ paused: true, repeat: -1 });
+    timeline = activeTimeline;
 
     words.forEach((word, wordIndex) => {
       const startTime = wordIndex === 0 ? 0 : nextStartTimes[wordIndex - 1];
 
       for (let length = 1; length <= word.length; length += 1) {
-        timeline?.call(
+        activeTimeline.call(
           () => {
-            wordElement.textContent = word.slice(0, length);
+            setWord(word.slice(0, length), length < word.length);
           },
           [],
           startTime + (length - 1) * 0.11
@@ -30,9 +37,9 @@ if (wordElement) {
       const eraseStart = startTime + (word.length - 1) * 0.11 + 2.2;
 
       for (let length = word.length - 1; length >= 0; length -= 1) {
-        timeline?.call(
+        activeTimeline.call(
           () => {
-            wordElement.textContent = word.slice(0, length);
+            setWord(word.slice(0, length), length > 0);
           },
           [],
           eraseStart + (word.length - 1 - length) * 0.065
@@ -43,17 +50,17 @@ if (wordElement) {
     });
 
     const cycleEnd = nextStartTimes[words.length - 1];
-    timeline.to({}, { duration: cycleEnd - timeline.duration(), ease: 'none' });
+    activeTimeline.to({}, { duration: cycleEnd - activeTimeline.duration(), ease: 'none' });
 
     if (document.visibilityState === 'visible') {
-      timeline.play(0);
+      activeTimeline.play(0);
     }
   };
 
   const stopAnimation = () => {
     timeline?.kill();
     timeline = null;
-    wordElement.textContent = words[0];
+    setWord(words[0], false);
   };
 
   const handleMotionChange = () => {
@@ -73,6 +80,8 @@ if (wordElement) {
   };
 
   const setup = () => {
+    if (isSetup) return;
+    isSetup = true;
     reducedMotion.addEventListener('change', handleMotionChange);
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('pagehide', cleanup);
@@ -85,11 +94,14 @@ if (wordElement) {
   };
 
   const cleanup = () => {
+    if (!isSetup) return;
+    isSetup = false;
     timeline?.kill();
     timeline = null;
     reducedMotion.removeEventListener('change', handleMotionChange);
     document.removeEventListener('visibilitychange', handleVisibilityChange);
     window.removeEventListener('pagehide', cleanup);
+    setWord(words[0], false);
   };
 
   const handlePageShow = (event: PageTransitionEvent) => {

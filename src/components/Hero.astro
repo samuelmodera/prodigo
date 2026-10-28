@@ -5,24 +5,24 @@ import heroImg from '../assets/hero-renaissance.png';
 <div class="page-shell">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <div class="h-tag fu fu1"><span class="h-dot" aria-hidden="true"></span>Product Systems Lab · Santiago, Chile</div>
+      <div class="h-tag"><span class="h-dot" aria-hidden="true"></span>Product Systems Lab · Santiago, Chile</div>
       <h1 id="hero-title" aria-label="Sistemas que ordenan operaciones reales.">
         <span class="hero-line hero-line-1" aria-hidden="true">
           Sistemas que
           <span class="hero-word-slot">
             <em class="hero-word" data-hero-word>ordenan</em>
-            <em class="hero-word-measure">simplifican</em>
+            <em class="hero-word-measure" aria-hidden="true">simplifican</em>
           </span>
         </span>
         <span class="hero-line hero-line-2" aria-hidden="true">operaciones reales.</span>
       </h1>
-      <p class="h-sub">Convertimos procesos desordenados, planillas y operación manual en sistemas digitales claros, simples y escalables.</p>
-      <div class="h-tags fu fu4" aria-label="Tipos de transformacion">
-        <span class="h-pill">De planillas <span class="chip-arrow">→</span> SaaS</span>
-        <span class="h-pill">De idea <span class="chip-arrow">→</span> MVP</span>
-        <span class="h-pill">De caos <span class="chip-arrow">→</span> Sistema</span>
+      <p class="h-sub">Transformamos procesos manuales y herramientas desconectadas en soluciones digitales que simplifican tu operación y ayudan a tu empresa a crecer.</p>
+      <div class="h-tags" role="list" aria-label="Transformaciones que realizamos">
+        <span class="h-pill" role="listitem">PLANILLAS <span class="chip-arrow" aria-hidden="true">→</span> SOFTWARE</span>
+        <span class="h-pill" role="listitem">TAREAS <span class="chip-arrow" aria-hidden="true">→</span> AUTOMATIZACIÓN</span>
+        <span class="h-pill" role="listitem">SISTEMAS <span class="chip-arrow" aria-hidden="true">→</span> INTEGRACIÓN</span>
       </div>
-      <div class="h-btns fu fu5">
+      <div class="h-btns">
         <a href="#contacto" class="bp">Conversemos <span class="cta-arrow">→</span></a>
         <a href="#proyectos" class="bg">Ver proyectos <span class="cta-arrow">→</span></a>
       </div>
@@ -40,12 +40,10 @@ import heroImg from '../assets/hero-renaissance.png';
         loading="eager"
         fetchpriority="high"
       />
-      <canvas class="hero-canvas" aria-hidden="true"></canvas>
     </div>
   </section>
 </div>
 <script>
   import '../scripts/site-interactions';
-  import '../scripts/hero-background';
   import '../scripts/hero-typewriter';
 </script>
